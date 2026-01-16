@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "pricedown";
+  src: url("./Pricedown Bl.otf");
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "pricedown";
+}
+
+/* Hide scrollbar but allow scroll with mouse/keyboard */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.carousel .list {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+  will-change: transform;
+}
+
+.carousel .list .item {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel .list .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel .list .item .content {
+  position: absolute;
+  top: 10%;
+  width: 1140px;
+  max-width: 80%;
+  left: 41%;
+  transform: translateX(-50%);
+  padding-right: 30%;
+  box-sizing: border-box;
+  color: antiquewhite;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.carousel .list .item .content .author {
+
+  letter-spacing: 10px;
+  font-size: 20px;
+}
+
+.carousel .list .item .content .title,
+.carousel .list .item .content .desc {
+  font-size: 2.5em;
+  list-style: 1.1em;
+
+}
+
+.carousel .list .item .content .title {
+  color: #f1683a;
+}
+
+.carousel .list .item .content .buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 110px);
+  grid-template-rows: 40px;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.carousel .list .item .content .buttons button {
+  min-width: 80px;
+  max-width: 120px;
+  width: 100px;
+  padding: 0 10px;
+  font-size: 1rem;
+}
+
+.thumbnail {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  left: auto;
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+}
+
+.thumbnail .item {
+  width: 150px;
+  height: 220px;
+  flex-shrink: 0;
+  position: relative;
+
+}
+
+.thumbnail .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.thumbnail .item .content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.thumbnail .item .content .title {
+  font-weight: bold;
+}
+
+.arrows {
+  position: absolute;
+  top: 80%;
+  right: 60%;
+  width: 300px;
+  max-width: 30%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.arrows button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eee4;
+  border: none;
+  font-family: monospace;
+  color: #fff;
+  font-weight: bold;
+  font-size: large;
+  transition: .5s;
+  z-index: 100;
+}
+
+.arrows button:hover {
+  background-color: #eee;
+  color: #555;
+}
+
+.carousel .list .item:nth-child(1) {
+  z-index: 1;
+}
+
+.carousel .list .item:nth-child(1) .author,
+.carousel .list .item:nth-child(1) .title,
+.carousel .list .item:nth-child(1) .desc,
+.carousel .list .item:nth-child(1) .buttons {
+  transform: translateY(50px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.5s 1s linear 1 forwards;
+}
+
+@keyframes showContent {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.carousel .list .item:nth-child(1) .title {
+  animation-delay: 1.2s;
+}
+
+.carousel .list .item:nth-child(1) .desc {
+  animation-delay: 1.4s;
+}
+
+.carousel .list .item:nth-child(1) .buttons {
+  animation-delay: 1.6s;
+}
+
+.carousel .next {
+  width: 150px;
+  height: 220px;
+  left: 50%;
+  position: absolute;
+  bottom: 50px;
+  border-radius: 20px;
+  animation: showImage 0.5s linear 1 forwards;
+}
+
+@keyframes showImage {
+  to {
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+
+  }
+
+}
+
+.carousel .next .thumbnail .item:nth-last-child(1) {
+  width: 0;
+  overflow: hidden;
+  animation: showThumbnail .5s linear 1 forwards;
+}
+
+@keyframes showThumbnail {
+  to {
+    width: 150px;
+  }
+
+}
+
+.carousel .next .thumbnail {
+  transform: translateX(150px);
+  animation: transformThumbnail .5s linear 1s forwards;
+}
+
+@keyframes transformThumbnail {
+  to {
+    transform: translateX(0);
+  }
+
+}
+
+.game {
+  margin-bottom: 60px;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(26, 10, 46, 0.9) 50%, #0a0a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.game button {
+  background: linear-gradient(135deg, #ff0080 0%, #ff6600 50%, #ffcc00 100%);
+  font-family: 'pricedown', 'Arial Black', sans-serif;
+  letter-spacing: 3px;
+  border: none;
+  box-shadow:
+    0 0 20px rgba(255, 0, 128, 0.5),
+    0 0 40px rgba(255, 102, 0, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.5);
+  transform: skewX(-5deg);
+  transition: all 0.3s ease;
+}
+
+.game button:hover {
+  transform: skewX(-5deg) scale(1.05);
+  box-shadow:
+    0 0 30px rgba(255, 0, 128, 0.7),
+    0 0 60px rgba(255, 102, 0, 0.5),
+    0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Racing Game Modal Styles */
+.racing-game-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.racing-game-container {
+  background: linear-gradient(135deg, #1a0a2e 0%, #0d0d1a 100%);
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #ff0080, #00ffff) 1;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow:
+    0 0 40px rgba(255, 0, 128, 0.3),
+    0 0 80px rgba(0, 255, 255, 0.2);
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 0, 128, 0.5);
+}
+
+.game-title {
+  font-family: 'pricedown', 'Arial Black', sans-serif;
+  font-size: 32px;
+  background: linear-gradient(45deg, #ff0080, #ff6600, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+.close-btn {
+  background: transparent;
+  border: 2px solid #ff0080;
+  color: #ff0080;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #ff0080;
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+}
+
+.game-instructions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+  font-family: 'pricedown', 'Arial Black', sans-serif;
+  color: #00ffff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.game-instructions span {
+  padding: 5px 15px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.game-canvas-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.game-canvas-container canvas {
+  display: block;
+}
